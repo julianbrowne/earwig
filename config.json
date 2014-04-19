@@ -1,0 +1,13 @@
+{ 
+    "name": "earwig", 
+    "usage": "usage: recvr [port]", 
+    "port": 8088, 
+    "httpResponse": 200, 
+    "supportedMethods": [ 
+        "get", 
+        "put", 
+        "post", 
+        "head", 
+        "del"
+    ]
+}
