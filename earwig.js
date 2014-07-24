@@ -15,14 +15,17 @@ config.supportedMethods.forEach(function(method) {
 });
 
 server.listen(port, function() { 
-  console.log("%s listening at %s on %s", server.name, server.url, server.port);
+  console.log("earwig: %s listening at %s on %s", server.name, server.url, server.port);
 });
 
 function listen(method) { 
-    console.log("registering listener for method %s", method.toUpperCase());
+    console.log("earwig: registering listener for method %s", method.toUpperCase());
     return function respond(request, response, next) { 
-        console.log("%d: %s %s", calls++, request.method, request.url);
-        console.log("body: %s", JSON.stringify(request.body));
+        console.log("earwig: %d: %s %s", calls++, request.method, request.url);
+        Object.keys(request.headers).forEach(function(header) {
+             console.log("earwig: http header %s = %s", header, request.headers[header]);
+        });
+        console.log("earwig: body: %s", JSON.stringify(request.body));
         response.send(config.httpResponse);
     }
 };
