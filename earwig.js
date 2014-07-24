@@ -18,6 +18,14 @@ server.listen(port, function() {
   console.log("earwig: %s listening at %s on %s", server.name, server.url, server.port);
 });
 
+server.on('error', function(error) { 
+    if(error.code === "EADDRINUSE")
+        console.log("earwig: error - port %s is already in use", port);
+    else
+        console.log(error.code);
+    process.exit;
+});
+
 function listen(method) { 
     console.log("earwig: registering listener for method %s", method.toUpperCase());
     return function respond(request, response, next) { 
@@ -26,6 +34,8 @@ function listen(method) {
              console.log("earwig: http header %s = %s", header, request.headers[header]);
         });
         console.log("earwig: body: %s", JSON.stringify(request.body));
+        if(request.headers["origin"])
+            response.header("Access-Control-Allow-Origin", "*"); //request.headers["origin"]);
         response.send(config.httpResponse);
     }
 };
