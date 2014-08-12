@@ -10,5 +10,8 @@
         "head", 
         "del"
     ],
-    "saveBody": false
+    "saveBody": {
+        "active": false,
+        "directory": "temp"
+    }
 }
