@@ -1,4 +1,5 @@
 
+var fs = require('fs');
 var restify = require('restify');
 var config = require('./config.json');
 var calls = 0;
@@ -34,6 +35,7 @@ function listen(method) {
              console.log("earwig: http header %s = %s", header, request.headers[header]);
         });
         console.log("earwig: body: %s", JSON.stringify(request.body));
+        if(config.saveBody) fs.writeFileSync("temp/" + calls + ".json", JSON.stringify(request.body));
         if(request.headers["origin"])
             response.header("Access-Control-Allow-Origin", "*"); //request.headers["origin"]);
         response.send(config.httpResponse);
