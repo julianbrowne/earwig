@@ -10,5 +10,5 @@
         "head", 
         "del"
     ],
-    "saveBody": true
+    "saveBody": false
 }
