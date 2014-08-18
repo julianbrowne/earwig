@@ -16,7 +16,7 @@ config.supportedMethods.forEach(function(method) {
 });
 
 server.listen(port, function() { 
-  console.log("earwig: %s listening at %s on %s", server.name, server.url, server.port);
+  console.log("earwig: %s listening on %s", server.name, server.url);
 });
 
 server.on('error', function(error) { 
